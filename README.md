@@ -296,7 +296,7 @@ Crie `painel.html` com uma listagem das mensagens recebidas. Você pode exibir e
 ## 📁 Estrutura Sugerida
 
 ```text
-seu-projeto/
+pasta raiz do projeto/
 ├── README.md
 ├── requirements.txt
 ├── manage.py

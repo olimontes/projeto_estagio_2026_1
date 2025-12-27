@@ -1,0 +1,21 @@
+.venv/
+db.sqlite3
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+.idea/
+.vscode/
+*.sqlite3
+*.log
+.DS_Store
+pip-wheel-metadata/
+
+# Byte-compiled / optimized / DLL files
+*.egg-info/
+.eggs/
+.env
+.env.*
