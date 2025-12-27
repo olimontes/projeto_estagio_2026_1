@@ -1,0 +1,183 @@
+<!DOCTYPE html>
+<html lang="pt-br">
+<head>
+    <meta charset="UTF-8">
+    <title>Painel | Mupi Academia</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <style>
+        * {
+            box-sizing: border-box;
+            font-family: 'Segoe UI', Arial, sans-serif;
+        }
+
+        body {
+            margin: 0;
+            min-height: 100vh;
+            background: linear-gradient(120deg, #0f2027, #203a43, #2c5364);
+            color: #fff;
+        }
+
+        header {
+            background: rgba(0,0,0,0.35);
+            padding: 20px 40px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        header h1 {
+            margin: 0;
+            font-size: 22px;
+            font-weight: 600;
+        }
+
+        header span {
+            font-weight: normal;
+            opacity: 0.85;
+        }
+
+        .logout-form button {
+            background: #e74c3c;
+            border: none;
+            padding: 10px 18px;
+            border-radius: 8px;
+            color: #fff;
+            font-weight: bold;
+            cursor: pointer;
+            transition: 0.3s;
+        }
+
+        .logout-form button:hover {
+            background: #c0392b;
+        }
+
+        main {
+            padding: 40px;
+        }
+
+        .card {
+            background: #ffffff;
+            color: #333;
+            border-radius: 18px;
+            padding: 25px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.35);
+        }
+
+        .card h2 {
+            margin-top: 0;
+            margin-bottom: 20px;
+            font-size: 24px;
+            color: #111;
+        }
+
+        table {
+            width: 100%;
+            border-collapse: collapse;
+        }
+
+        thead {
+            background: #1db954;
+            color: #fff;
+        }
+
+        th, td {
+            padding: 14px;
+            text-align: left;
+            vertical-align: top;
+        }
+
+        tbody tr:nth-child(even) {
+            background: #f5f5f5;
+        }
+
+        tbody tr:hover {
+            background: #e9f7ef;
+        }
+
+        td {
+            font-size: 14px;
+        }
+
+        .empty {
+            text-align: center;
+            padding: 40px;
+            color: #777;
+        }
+
+        footer {
+            margin-top: 30px;
+            text-align: center;
+            opacity: 0.7;
+            font-size: 13px;
+        }
+
+        @media (max-width: 768px) {
+            header {
+                flex-direction: column;
+                gap: 15px;
+                text-align: center;
+            }
+
+            main {
+                padding: 20px;
+            }
+
+            table {
+                font-size: 13px;
+            }
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1>SAC Academia <span>| Painel Administrativo</span></h1>
+
+    <form method="post" action="{% url 'sac_academia:logout' %}" class="logout-form">
+        {% csrf_token %}
+        <button type="submit">Sair</button>
+    </form>
+</header>
+
+<main>
+    <div class="card">
+        <h2>Painel de Mensagens</h2>
+
+        <p>Olá, <strong>{{ request.user.username }}</strong></p>
+
+        {% if mensagens %}
+        <table>
+            <thead>
+                <tr>
+                    <th>Nome</th>
+                    <th>Email</th>
+                    <th>Mensagem</th>
+                    <th>Data</th>
+                </tr>
+            </thead>
+            <tbody>
+                {% for m in mensagens %}
+                <tr>
+                    <td>{{ m.nome }}</td>
+                    <td>{{ m.email }}</td>
+                    <td>{{ m.mensagem|linebreaksbr }}</td>
+                    <td>{{ m.data_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
+                </tr>
+                {% endfor %}
+            </tbody>
+        </table>
+        {% else %}
+            <div class="empty">
+                Nenhuma mensagem recebida.
+            </div>
+        {% endif %}
+    </div>
+
+    <footer>
+        Disciplina, foco e resultado • Mupi Academia
+    </footer>
+</main>
+
+</body>
+</html>
