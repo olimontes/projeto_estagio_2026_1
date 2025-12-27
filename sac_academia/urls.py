@@ -9,4 +9,5 @@ urlpatterns = [
     path('login/', LoginView.as_view(template_name='sac_academia/login.html'), name='login'),
     path('logout/', LogoutView.as_view(next_page='sac_academia:landpage'), name='logout'),
     path('painel/', views.painel, name='painel'),
+    path('cadastro/', views.cadastro, name='cadastro'),
 ]
