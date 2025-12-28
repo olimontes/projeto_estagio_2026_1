@@ -1,3 +1,4 @@
+{% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
 <head>
@@ -6,228 +7,301 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
 
     <style>
+        /* ================= VARIÁVEIS ================= */
+        :root {
+            --primary: #5B6CFF;
+            --primary-light: #8B95FF;
+            --primary-dark: #3F4ED9;
+
+            --bg-light: #f9fafb;
+            --bg-dark: #0f172a;
+
+            --text-dark: #0f172a;
+            --text-light: #ffffff;
+        }
+
         * {
+            margin: 0;
+            padding: 0;
             box-sizing: border-box;
             font-family: 'Segoe UI', Arial, sans-serif;
         }
 
         body {
-            margin: 0;
-            background: #0f2027;
-            color: #fff;
+            background: var(--bg-light);
+            color: var(--text-dark);
         }
 
-        /* HEADER */
+        /* ================= HEADER ================= */
         header {
-            padding: 25px 60px;
+            background: #ffffff;
+            padding: 18px 60px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            background: rgba(0,0,0,0.4);
+            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            position: sticky;
+            top: 0;
+            z-index: 10;
         }
 
-        header h1 {
-            margin: 0;
-            font-size: 26px;
-            font-weight: bold;
-            color: #1db954;
-        }
-
-        /* ESTILO PADRONIZADO PARA LINKS E BOTÃO DE LOGOUT */
-        nav {
-            display: flex;
-            align-items: center;
+        header img {
+            height: 46px;
         }
 
         nav a, .nav-btn {
-            color: #fff;
             margin-left: 25px;
             text-decoration: none;
-            font-weight: 500;
-            font-size: 16px;
-            transition: 0.3s;
+            font-weight: 700;
+            color: var(--text-dark);
             background: none;
             border: none;
-            padding: 0;
             cursor: pointer;
-            font-family: inherit;
+            transition: 0.3s;
+            font-size: 15px;
         }
 
         nav a:hover, .nav-btn:hover {
-            color: #1db954;
+            color: var(--primary);
         }
 
-        /* HERO */
+        /* ================= HERO ================= */
         .hero {
             min-height: 90vh;
-            padding: 60px;
-            display: flex;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
             align-items: center;
-            background:
-                linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)),
-                url("https://images.unsplash.com/photo-1517964603305-11c0f6f66012") center/cover no-repeat;
+            padding: 60px;
+            position: relative;
+            overflow: hidden;
         }
 
-        .hero-content {
-            max-width: 550px;
+        .hero-left {
+            z-index: 2;
         }
 
-        .hero h2 {
-            font-size: 48px;
+        .tag {
+            display: inline-block;
+            background: var(--primary);
+            color: #fff;
+            font-weight: 900;
+            padding: 6px 16px;
+            font-size: 13px;
+            letter-spacing: 1px;
             margin-bottom: 20px;
+        }
+
+        .hero h1 {
+            font-size: 56px;
+            font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 20px;
+        }
+
+        .hero h1 span {
+            color: var(--primary);
         }
 
         .hero p {
             font-size: 18px;
-            line-height: 1.6;
-            opacity: 0.9;
+            max-width: 480px;
+            line-height: 1.7;
+            color: #333;
         }
 
-        .hero a {
+        .btn-hero {
             display: inline-block;
             margin-top: 30px;
-            padding: 14px 30px;
-            background: #1db954;
+            padding: 14px 36px;
+            background: var(--bg-dark);
             color: #fff;
             text-decoration: none;
-            font-weight: bold;
+            font-weight: 800;
             border-radius: 30px;
             transition: 0.3s;
         }
 
-        .hero a:hover {
-            background: #159a43;
+        .btn-hero:hover {
+            background: var(--primary);
+            color: #fff;
         }
 
-        /* FEATURES */
-        .features {
-            padding: 80px 60px;
-            background: #fff;
-            color: #111;
+        .hero-right {
+            position: relative;
+            display: flex;
+            justify-content: center;
+            align-items: center;
         }
 
-        .features h3 {
+        .hero-right img {
+            position: relative;
+            z-index: 3;
+            width: 500px;
+            filter: drop-shadow(0 20px 40px rgba(0,0,0,0.35));
+            transition: transform 0.4s ease;
+        }
+
+        .hero-right img:hover {
+            transform: scale(1.05);
+        }
+
+        .circle {
+            position: absolute;
+            border-radius: 50%;
+            z-index: 1;
+        }
+
+        .circle.light {
+            width: 560px;
+            height: 560px;
+            background: rgba(91,108,255,0.25);
+        }
+
+        .circle.main {
+            width: 420px;
+            height: 420px;
+            background: var(--primary);
+        }
+
+        /* ================= SOBRE ================= */
+        .sobre {
+            padding: 100px 60px;
+            background: #ffffff;
             text-align: center;
-            font-size: 32px;
-            margin-bottom: 50px;
         }
 
-        .feature-grid {
+        .sobre h2 {
+            font-size: 38px;
+            margin-bottom: 20px;
+        }
+
+        .sobre p {
+            max-width: 800px;
+            margin: 0 auto 60px;
+            font-size: 18px;
+            line-height: 1.7;
+            color: #444;
+        }
+
+        .cards {
             display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
-            gap: 30px;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 35px;
         }
 
-        .feature {
-            background: #f4f4f4;
-            padding: 30px;
-            border-radius: 16px;
-            text-align: center;
+        .card {
+            background: var(--bg-light);
+            padding: 35px;
+            border-radius: 20px;
+            box-shadow: 0 20px 40px rgba(0,0,0,0.08);
+            transition: 0.3s;
         }
 
-        .feature h4 {
+        .card:hover {
+            transform: translateY(-10px);
+        }
+
+        .card h3 {
             margin-bottom: 15px;
-            color: #1db954;
+            color: var(--primary);
         }
 
-        /* CONTATO */
-        .contact {
-            padding: 80px 60px;
-            background: #203a43;
-        }
-
-        .contact h3 {
+        /* ================= CONTATO ================= */
+        .contato {
+            padding: 100px 60px;
+            background: var(--bg-dark);
+            color: #fff;
             text-align: center;
-            font-size: 32px;
+        }
+
+        .contato h2 {
+            font-size: 36px;
+            margin-bottom: 10px;
+        }
+
+        .contato p {
+            opacity: 0.85;
             margin-bottom: 40px;
         }
 
-        .contact form {
-            max-width: 500px;
+        .contato form {
+            max-width: 480px;
             margin: auto;
-            background: #fff;
-            padding: 35px;
-            border-radius: 18px;
+            background: #ffffff;
+            padding: 40px;
+            border-radius: 20px;
             color: #111;
         }
 
-        .contact input,
-        .contact textarea {
+        .contato textarea {
             width: 100%;
             padding: 14px;
-            margin-bottom: 15px;
-            border-radius: 10px;
+            border-radius: 12px;
             border: 1px solid #ccc;
             font-size: 15px;
+            min-height: 130px;
+            margin-bottom: 20px;
         }
 
-        .contact textarea {
-            resize: vertical;
-            min-height: 120px;
-        }
-
-        .contact button {
+        .contato button {
             width: 100%;
             padding: 14px;
-            background: #1db954;
+            background: var(--primary);
             border: none;
-            border-radius: 10px;
+            border-radius: 12px;
             color: #fff;
             font-size: 16px;
-            font-weight: bold;
+            font-weight: 900;
             cursor: pointer;
+            transition: 0.3s;
         }
 
-        .contact button:hover {
-            background: #159a43;
+        .contato button:hover {
+            background: var(--primary-dark);
         }
 
-        /* FOOTER */
+        /* ================= FOOTER ================= */
         footer {
-            background: #0b151a;
+            background: #070d16;
             text-align: center;
-            padding: 20px;
+            padding: 25px;
             font-size: 14px;
-            opacity: 0.8;
+            color: rgba(255,255,255,0.7);
         }
 
-        @media (max-width: 768px) {
-            header {
-                flex-direction: column;
-                gap: 15px;
+        /* ================= RESPONSIVO ================= */
+        @media (max-width: 900px) {
+            .hero {
+                grid-template-columns: 1fr;
+                text-align: center;
             }
-            nav {
-                margin-top: 10px;
+
+            .hero h1 {
+                font-size: 42px;
             }
-            nav a, .nav-btn {
-                margin-left: 15px;
-                margin-right: 15px;
+
+            .hero-right {
+                margin-top: 50px;
             }
         }
     </style>
 </head>
+
 <body>
 
 <header>
-    <div class="header-left">
-        <h1>Mupi Academia</h1>
-    </div>
-
-    <div class="header-center">
-        {% if user.is_authenticated %}
-            <p>Olá, <strong>{{ user.username }}</strong></p>
-        {% endif %}
-    </div>
-
-    <nav class="header-right">
+    <img src="{% static 'images/logo.png' %}" alt="Logo Mupi">
+    <nav>
         <a href="#sobre">Sobre</a>
         <a href="#contato">Contato</a>
-        
+
         {% if user.is_authenticated %}
-            <a href="{% url 'sac_academia:painel' %}">Painel</a>
-            <form action="{% url 'sac_academia:logout' %}" method="post" style="display: inline;">
+            {% if user.is_superuser %}
+                <a href="{% url 'sac_academia:painel' %}">Painel</a>
+            {% endif %}
+            <form method="post" action="{% url 'sac_academia:logout' %}" style="display:inline;">
                 {% csrf_token %}
-                <button type="submit" class="nav-btn">Logout</button>
+                <button class="nav-btn">Logout</button>
             </form>
         {% else %}
             <a href="{% url 'sac_academia:login' %}">Login</a>
@@ -236,74 +310,61 @@
 </header>
 
 <section class="hero">
-    <div class="hero-content">
-        <h2>Gestão inteligente para academias</h2>
+    <div class="hero-left">
+        <span class="tag">FITNESS TECH</span>
+        <h1>GESTÃO PARA<br><span>ACADEMIAS</span></h1>
         <p>
-            Organize contatos, acompanhe mensagens e tenha controle total
-            do seu negócio com eficiência e disciplina.
+            A Mupi Academia une tecnologia e organização para academias
+            que buscam disciplina, performance e crescimento real.
         </p>
-        <a href="#contato">Fale conosco</a>
+        <a href="#contato" class="btn-hero">SAIBA MAIS</a>
+    </div>
+
+    <div class="hero-right">
+        <div class="circle light"></div>
+        <div class="circle main"></div>
+        <img src="{% static 'images/landpage.png' %}" alt="Dashboard Mupi">
     </div>
 </section>
 
-<section class="features" id="sobre">
-    <h3>Por que escolher a Mupi Academia?</h3>
-    <div class="feature-grid">
-        <div class="feature">
-            <h4>Controle Total</h4>
-            <p>Centralize mensagens e contatos em um único painel.</p>
+<section class="sobre" id="sobre">
+    <h2>Sobre a Mupi Academia</h2>
+    <p>
+        Criamos soluções digitais focadas em academias modernas.
+        Centralize mensagens, organize contatos e tenha controle
+        total da comunicação com seus alunos.
+    </p>
+
+    <div class="cards">
+        <div class="card">
+            <h3>Organização</h3>
+            <p>Mensagens e informações centralizadas em um único painel.</p>
         </div>
-        <div class="feature">
-            <h4>Organização</h4>
-            <p>Gerencie informações com clareza e rapidez.</p>
+        <div class="card">
+            <h3>Performance</h3>
+            <p>Menos burocracia, mais tempo para o que realmente importa.</p>
         </div>
-        <div class="feature">
-            <h4>Resultado</h4>
-            <p>Decisões mais rápidas e eficientes para o seu negócio.</p>
+        <div class="card">
+            <h3>Resultado</h3>
+            <p>Decisões rápidas baseadas em informação clara.</p>
         </div>
     </div>
 </section>
 
-<section class="contact" id="contato">
-    <h3>Entre em contato</h3>
-    
+<section class="contato" id="contato">
+    <h2>Entre em contato</h2>
+    <p>Fale com a gente e leve sua academia para o próximo nível.</p>
+
     <form method="post">
         {% csrf_token %}
-        
-        <input type="text" name="nome" placeholder="Nome" required>
-        <input type="email" name="email" placeholder="Email" required>
-        <textarea name="mensagem" placeholder="Mensagem" required></textarea>
-
         {% if user.is_authenticated %}
-            <button type="submit">Enviar mensagem</button>
+            <textarea name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
+            <button type="submit">ENVIAR</button>
         {% else %}
-            <div style="background: #fff3f3; padding: 15px; border-radius: 10px; border: 1px solid #ffcccc; margin-bottom: 15px;">
-                <p style="color: #d9534f; margin: 0; font-weight: bold; font-size: 14px;">
-                    ⚠️ Você não está logado. Entre na sua conta para nos enviar mensagens.
-                </p>
-            </div>
-            
-            <button type="button" style="background: #a0a0a0; cursor: not-allowed; opacity: 0.7;" disabled>
-                Enviar mensagem
-            </button>
-            
-            <p style="text-align: center; margin-top: 10px;">
-                <a href="{% url 'sac_academia:login' %}" style="color: #1db954; font-size: 14px; text-decoration: underline;">
-                    Fazer login agora
-                </a>
-            </p>
+            <p style="color:#333;">Faça login para enviar uma mensagem.</p>
+            <a href="{% url 'sac_academia:login' %}">Entrar</a>
         {% endif %}
     </form>
-
-    {% if messages %}
-        <div class="messages" style="margin-top: 20px;">
-            {% for m in messages %}
-                <p style="color: #1db954; font-weight: bold; text-align: center; background: rgba(29, 185, 84, 0.1); padding: 10px; border-radius: 8px;">
-                    {{ m }}
-                </p>
-            {% endfor %}
-        </div>
-    {% endif %}
 </section>
 
 <footer>

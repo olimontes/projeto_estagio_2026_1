@@ -12,26 +12,35 @@ from django.contrib.auth import logout
 usuarios = User.objects.all()
 
 
+from django.contrib import messages
+from django.shortcuts import render, redirect
+from .models import Mensagem
+
 def landpage(request):
     if request.method == 'POST':
-        nome = request.POST.get('nome')
-        email = request.POST.get('email')
+
+        if not request.user.is_authenticated:
+            messages.error(request, "Você precisa estar logado para enviar mensagens.")
+            return redirect('sac_academia:login')
+
         texto = request.POST.get('mensagem')
 
-        if request.user.is_authenticated:
-            Mensagem.objects.create(
-                usuario=request.user,
-                nome=nome, 
-                email=email, 
-                mensagem=texto
-            )
-            messages.success(request, "Mensagem enviada com sucesso!")
-        else:
-            messages.error(request, "Você precisa estar logado para enviar mensagens.")
-            
+        if not texto:
+            messages.error(request, "A mensagem não pode estar vazia.")
+            return redirect('sac_academia:landpage')
+
+        Mensagem.objects.create(
+            usuario=request.user,
+            nome=request.user.first_name or request.user.username,
+            email=request.user.email,
+            mensagem=texto
+        )
+
+        messages.success(request, "Mensagem enviada com sucesso!")
         return redirect('sac_academia:landpage')
 
     return render(request, 'sac_academia/landpage.html')
+
 
 
 

@@ -134,10 +134,10 @@
 <header>
     <h1>Mupi Academia <span>| Painel Administrativo</span></h1>
 
-    <form method="post" action="{% url 'sac_academia:logout' %}" class="logout-form">
-        {% csrf_token %}
-        <button type="submit">Sair</button>
-    </form>
+    <a href="{% url 'sac_academia:landpage' %}" class="nav-btn">
+    Voltar
+</a>
+
 </header>
 
 <main>
