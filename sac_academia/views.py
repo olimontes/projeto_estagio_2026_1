@@ -1,4 +1,4 @@
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib import messages
 from .models import Mensagem
 from django.contrib.auth.decorators import login_required
@@ -50,6 +50,27 @@ def painel(request):
         return redirect('sac_academia:landpage')
     mensagens = Mensagem.objects.all().order_by('-data_envio')
     return render(request, 'sac_academia/painel.html', {'mensagens': mensagens})
+
+@login_required(login_url='sac_academia:login')
+def deletar_mensagem(request, id):
+    if not request.user.is_superuser:
+        return redirect('sac_academia:landpage')
+    
+    mensagem = get_object_or_404(Mensagem, id=id)
+    mensagem.delete()
+    messages.success(request, "Mensagem excluída com sucesso!")
+    return redirect('sac_academia:painel')
+
+@login_required(login_url='sac_academia:login')
+def marcar_lida(request, id):
+    if not request.user.is_superuser:
+        return redirect('sac_academia:landpage')
+    
+    mensagem = get_object_or_404(Mensagem, id=id)
+    # Supondo que você tenha um campo 'lida' (boolean) no model Mensagem
+    mensagem.lida = True 
+    mensagem.save()
+    return redirect('sac_academia:painel')
 
 
 def cadastro(request):

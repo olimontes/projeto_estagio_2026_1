@@ -147,26 +147,43 @@
         <p>Olá, <strong>{{ request.user.username }}</strong></p>
 
         {% if mensagens %}
-        <table>
-            <thead>
-                <tr>
-                    <th>Nome</th>
-                    <th>Email</th>
-                    <th>Mensagem</th>
-                    <th>Data</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for m in mensagens %}
-                <tr>
-                    <td>{{ m.nome }}</td>
-                    <td>{{ m.email }}</td>
-                    <td>{{ m.mensagem|linebreaksbr }}</td>
-                    <td>{{ m.data_envio|date:"SHORT_DATETIME_FORMAT" }}</td>
-                </tr>
+        <table border="1">
+    <thead>
+        <tr>
+            <th>Usuário</th>
+            <th>Mensagem</th>
+            <th>Data</th>
+            <th>Ações</th>
+        </tr>
+    </thead>
+    <tbody>
+        {% for msg in mensagens %}
+        <tr>
+            <td>{{ msg.nome }} ({{ msg.email }})</td>
+            <td>{{ msg.mensagem }}</td>
+            <td>{{ msg.data_envio|date:"d/m/Y H:i" }}</td>
+            <td>
+                <form action="{% url 'sac_academia:deletar_mensagem' msg.id %}" method="POST" style="display:inline;">
+                    {% csrf_token %}
+                    <button type="submit" onclick="return confirm('Tem certeza?')">Excluir</button>
+                </form>
+            </td>
+        </tr>
+        {% empty %}
+        <tr>
+            <td colspan="4">Nenhuma mensagem encontrada.</td>
+        </tr>
+        {% endfor %}
+
+        {% if messages %}
+            <div class="messages">
+                {% for m in messages %}
+                    <p>{{ m }}</p>
                 {% endfor %}
-            </tbody>
-        </table>
+            </div>
+        {% endif %}
+    </tbody>
+</table>
         {% else %}
             <div class="empty">
                 Nenhuma mensagem recebida.
