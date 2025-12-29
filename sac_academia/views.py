@@ -67,7 +67,6 @@ def marcar_lida(request, id):
         return redirect('sac_academia:landpage')
     
     mensagem = get_object_or_404(Mensagem, id=id)
-    # Supondo que você tenha um campo 'lida' (boolean) no model Mensagem
     mensagem.lida = True 
     mensagem.save()
     return redirect('sac_academia:painel')
@@ -78,7 +77,7 @@ def cadastro(request):
         form = CadastroForm(request.POST)
         if form.is_valid():
             user = form.save()
-            login(request, user)  # login automático
+            login(request, user)  
             return redirect('sac_academia:landpage')
     else:
         form = CadastroForm()
@@ -88,24 +87,4 @@ def cadastro(request):
 
 
 
-def login_view(request):
-    if request.method == 'POST':
-        username = request.POST.get('username')
-        password = request.POST.get('password')
 
-        user = authenticate(request, username=username, password=password)
-
-        if user is not None:
-            login(request, user)
-            return redirect('sac_academia:landpage')
-        else:
-            messages.error(request, 'Usuário ou senha inválidos.')
-
-    return render(request, 'sac_academia/login.html')
-
-
-
-def logout_view(request):
-    if request.method == 'POST':
-        logout(request)
-    return redirect('sac_academia:landpage')

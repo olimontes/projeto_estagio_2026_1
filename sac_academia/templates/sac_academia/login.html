@@ -178,6 +178,75 @@
                 padding: 40px;
             }
         }
+
+        /* ================= RESPONSIVO AVANÇADO ================= */
+
+/* Tablets e celulares */
+@media (max-width: 768px) {
+    body {
+        padding: 20px;
+    }
+
+    .container {
+        grid-template-columns: 1fr;
+        border-radius: 18px;
+    }
+
+    .image-box {
+        display: none;
+    }
+
+    .login-box {
+        padding: 35px 25px;
+    }
+
+    .login-box h2 {
+        font-size: 26px;
+        text-align: center;
+    }
+
+    .login-box p {
+        text-align: center;
+        font-size: 15px;
+    }
+
+    button {
+        font-size: 17px;
+        padding: 16px;
+    }
+}
+
+/* Celulares pequenos */
+@media (max-width: 480px) {
+    .login-box {
+        padding: 30px 20px;
+    }
+
+    form input {
+        padding: 15px;
+        font-size: 16px;
+    }
+
+    button {
+        padding: 17px;
+        font-size: 17px;
+        border-radius: 16px;
+    }
+
+    .signup-link {
+        font-size: 13px;
+    }
+}
+
+/* Celulares muito baixos (evita corte de tela) */
+@media (max-height: 600px) {
+    body {
+        align-items: flex-start;
+        padding-top: 30px;
+        padding-bottom: 30px;
+    }
+}
+
     </style>
 </head>
 <body>

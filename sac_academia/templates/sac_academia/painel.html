@@ -199,6 +199,97 @@
                 font-size: 13px;
             }
         }
+
+        /* ================= RESPONSIVO AVANÇADO ================= */
+
+/* Tablets */
+@media (max-width: 900px) {
+    header {
+        padding: 18px 25px;
+        text-align: center;
+    }
+
+    header h1 {
+        font-size: 20px;
+    }
+
+    main {
+        padding: 25px 18px;
+    }
+
+    .card {
+        padding: 28px 22px;
+    }
+}
+
+/* Mobile */
+@media (max-width: 600px) {
+    table {
+        min-width: 700px;
+    }
+}
+
+
+    header h1 span {
+        display: block;
+        font-size: 14px;
+        opacity: 0.7;
+    }
+
+    .nav-btn {
+        padding: 10px 26px;
+        font-size: 14px;
+    }
+
+    .card h2 {
+        font-size: 22px;
+        text-align: center;
+    }
+
+    .card p {
+        text-align: center;
+        font-size: 14px;
+    }
+
+    /* Scroll horizontal da tabela */
+    .table-wrapper {
+        overflow-x: auto;
+        -webkit-overflow-scrolling: touch;
+        border-radius: 18px;
+    }
+
+    table {
+        min-width: 700px;
+    }
+
+    .table-wrapper {
+    width: 100%;
+    overflow-x: auto;
+}
+
+    th, td {
+        padding: 12px 14px;
+        font-size: 13px;
+    }
+
+    button {
+        padding: 10px 14px;
+        font-size: 13px;
+    }
+
+    footer {
+        font-size: 12px;
+        margin-top: 25px;
+    }
+}
+
+/* Telas muito baixas */
+@media (max-height: 650px) {
+    main {
+        padding-top: 20px;
+    }
+}
+
     </style>
 </head>
 
@@ -215,7 +306,9 @@
         <p>Olá, <strong>{{ request.user.username }}</strong></p>
 
         {% if mensagens %}
+        <div class = "table-wrapper">
         <table>
+            
             <thead>
                 <tr>
                     <th>Usuário</th>
@@ -248,9 +341,18 @@
                 {% endfor %}
             </tbody>
         </table>
+        </div>
         {% else %}
             <div class="empty">
                 Nenhuma mensagem recebida.
+            </div>
+        {% endif %}
+
+        {% if messages %}
+            <div class="messages">
+                {% for message in messages %}
+                    <p>{{ message }}</p>
+                {% endfor %}
             </div>
         {% endif %}
     </div>

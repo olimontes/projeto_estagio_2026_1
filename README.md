@@ -22,14 +22,14 @@ Você irá desenvolver uma **aplicação web simples** usando Django que consist
 ┌─────────────────────────────────────────────────────────────┐
 │  VISITANTE                                                  │
 │  ↓                                                          │
-│  Acessa a landpage → Preenche formulário (nome, email,     │
-│  mensagem) → Clica em "Enviar" → Mensagem salva no banco   │
+│  Acessa a landpage → Preenche formulário (nome, email,      │
+│  mensagem) → Clica em "Enviar" → Mensagem salva no banco    │
 └─────────────────────────────────────────────────────────────┘
 
 ┌─────────────────────────────────────────────────────────────┐
 │  ADMINISTRADOR                                              │
 │  ↓                                                          │
-│  Acessa /painel → Faz login (superusuário) → Visualiza     │
+│  Acessa /painel → Faz login (superusuário) → Visualiza      │
 │  lista com todas as mensagens (nome, email, mensagem, data) │
 └─────────────────────────────────────────────────────────────┘
 ```
