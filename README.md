@@ -1,7 +1,3 @@
-Segue o **README completado e revisado até o passo de execução do projeto**, mantendo o padrão profissional e adequado para avaliação técnica 👇
-
----
-
 # 🏋️ SAC Academia - Sistema de Atendimento ao Cliente
 
 ## 📋 Visão Geral
