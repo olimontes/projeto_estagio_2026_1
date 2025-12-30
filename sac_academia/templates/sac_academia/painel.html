@@ -323,14 +323,30 @@
                     <td>{{ msg.nome }} ({{ msg.email }})</td>
                     <td>{{ msg.mensagem }}</td>
                     <td>{{ msg.data_envio|date:"d/m/Y H:i" }}</td>
-                    <td>
-                        <form action="{% url 'sac_academia:deletar_mensagem' msg.id %}" method="POST" style="display:inline;">
-                            {% csrf_token %}
-                            <button type="submit" onclick="return confirm('Tem certeza?')">
-                                Excluir
-                            </button>
-                        </form>
-                    </td>
+                    
+                        <td>
+    {% if not msg.lida %}
+        <form action="{% url 'sac_academia:marcar_lida' msg.id %}" method="POST" style="display:inline;">
+            {% csrf_token %}
+            <button type="submit" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
+                Marcar como lida
+            </button>
+        </form>
+    {% else %}
+        <span style="color:#16a34a; font-weight:700;">Lida</span>
+    {% endif %}
+
+    <form action="{% url 'sac_academia:deletar_mensagem' msg.id %}" method="POST" style="display:inline;">
+        {% csrf_token %}
+        <button type="submit" onclick="return confirm('Tem certeza?')">
+            Excluir
+        </button>
+    </form>
+</td>
+
+                
+
+                    
                 </tr>
                 {% empty %}
                 <tr>
