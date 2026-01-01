@@ -181,6 +181,43 @@
             transform: translateY(-2px);
         }
 
+        /* ================= PAGINAÇÃO ================= */
+.pagination {
+    margin-top: 25px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 14px;
+    flex-wrap: wrap;
+}
+
+.pagination a {
+    text-decoration: none;
+    padding: 10px 20px;
+    background: linear-gradient(
+        135deg,
+        var(--primary),
+        var(--primary-dark)
+    );
+    color: #fff;
+    font-weight: 700;
+    border-radius: 22px;
+    box-shadow: 0 10px 25px rgba(91, 108, 255, 0.45);
+    transition: 0.3s;
+    font-size: 14px;
+}
+
+.pagination a:hover {
+    transform: translateY(-2px);
+}
+
+.pagination span {
+    font-size: 14px;
+    font-weight: 600;
+    color: #334155;
+}
+
+
         /* ================= VAZIO ================= */
         .empty {
             text-align: center;
@@ -264,7 +301,7 @@
         <span>| Painel Administrativo</span>
     </h1>
     <a href="{% url 'sac_academia:landpage' %}" class="nav-btn">
-        Voltar
+        Voltar ao site
     </a>
 </header>
 
@@ -272,60 +309,62 @@
     <div class="card">
         <h2>Painel de Mensagens</h2>
         <p>
-            Olá,
-            <strong>{{ request.user.username }}</strong>
+            Olá, <strong>{{ request.user.username }}</strong>
         </p>
 
-        {% if nenhuma_mensagem %}
-    <div style="background:#fff3cd; padding:15px; border-radius:8px; margin-bottom:15px;">
-        <p style="margin:0; color:#856404;">
-            Nenhuma mensagem encontrada com os filtros aplicados.
-        </p>
-
-        <a href="{% url 'sac_academia:painel' %}"
-           style="display:inline-block; margin-top:10px; padding:8px 15px;
-                  background:#007bff; color:#fff; text-decoration:none;
-                  border-radius:5px;">
-            Voltar para todas as mensagens
-        </a>
-    </div>
-{% endif %}
-
-        {% if mensagens %}
+        <!-- FORMULÁRIO DE FILTRO -->
         <form method="get" style="margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 15px;">
-    <input
-        type="text"
-        name="q"
-        placeholder="Buscar por nome, email ou mensagem"
-        value="{{ request.GET.q }}"
-        style="flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
-    >
+            <input
+                type="text"
+                name="q"
+                placeholder="Buscar por nome, email ou mensagem"
+                value="{{ request.GET.q }}"
+                style="flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
+            >
 
-    <input
-        type="date"
-        name="data_inicio"
-        value="{{ request.GET.data_inicio }}"
-        style="padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
-    >
+            <input
+                type="date"
+                name="data_inicio"
+                value="{{ request.GET.data_inicio }}"
+                style="padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
+            >
 
-    <button
-        type="submit"
-        style="background: linear-gradient(135deg, #5B6CFF, #3F4ED9); color: #fff; padding: 10px 22px; border-radius: 14px;"
-    >
-        Filtrar
-    </button>
+            <button
+                type="submit"
+                style="background: linear-gradient(135deg, #5B6CFF, #3F4ED9); color: #fff; padding: 10px 22px; border-radius: 14px;"
+            >
+                Filtrar
+            </button>
 
-    {% if request.GET %}
-        <a
-            href="{% url 'sac_academia:painel' %}"
-            class="nav-btn"
-            style="background: #64748b;"
-        >
-            Limpar
-        </a>
-    {% endif %}
-</form>
+            {% if request.GET %}
+                <a
+                    href="{% url 'sac_academia:painel' %}"
+                    class="nav-btn"
+                    style="background: #64748b;"
+                >
+                    Limpar
+                </a>
+            {% endif %}
+        </form>
 
+        <!-- CASO: FILTRO ATIVO E NENHUM RESULTADO -->
+        {% if request.GET and not mensagens %}
+            <div style="background:#fff3cd; padding:15px; border-radius:8px; margin-bottom:15px;">
+                <p style="margin:0; color:#856404;">
+                    Nenhuma mensagem encontrada com os filtros aplicados.
+                </p>
+
+                <a href="{% url 'sac_academia:painel' %}"
+                   style="display:inline-block; margin-top:10px; padding:8px 15px;
+                          background:#007bff; color:#fff; text-decoration:none;
+                          border-radius:5px;">
+                    Voltar para todas as mensagens
+                </a>
+            </div>
+        {% endif %}
+
+        <!-- TABELA DE MENSAGENS -->
+        {% if mensagens %}
             <div class="table-wrapper">
                 <table>
                     <thead>
@@ -339,13 +378,9 @@
                     <tbody>
                         {% for msg in mensagens %}
                             <tr>
-                                <td>
-                                    {{ msg.nome }} ({{ msg.email }})
-                                </td>
+                                <td>{{ msg.nome }} ({{ msg.email }})</td>
                                 <td>{{ msg.mensagem }}</td>
-                                <td>
-                                    {{ msg.data_envio|date:"d/m/Y H:i" }}
-                                </td>
+                                <td>{{ msg.data_envio|date:"d/m/Y H:i" }}</td>
                                 <td>
                                     {% if not msg.lida %}
                                         <form
@@ -382,22 +417,20 @@
                                     </form>
                                 </td>
                             </tr>
-                        {% empty %}
-                            <tr>
-                                <td colspan="4" class="empty">
-                                    Nenhuma mensagem encontrada.
-                                </td>
-                            </tr>
                         {% endfor %}
                     </tbody>
                 </table>
             </div>
-        {% else %}
+        {% endif %}
+
+        <!-- CASO: NUNCA EXISTIU MENSAGEM -->
+        {% if not mensagens and not request.GET %}
             <div class="empty">
                 Nenhuma mensagem recebida.
             </div>
         {% endif %}
 
+        <!-- MENSAGENS DO DJANGO -->
         {% if messages %}
             <div class="messages">
                 {% for message in messages %}
@@ -407,9 +440,34 @@
         {% endif %}
     </div>
 
+    <!-- PAGINAÇÃO -->
+    {% if mensagens.paginator.num_pages > 1 %}
+        <div class="pagination">
+
+    {% if mensagens.has_previous %}
+        <a href="?page={{ mensagens.previous_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.data_inicio %}&data_inicio={{ request.GET.data_inicio }}{% endif %}">
+            ◀ Anterior
+        </a>
+    {% endif %}
+
+    <span>
+        Página {{ mensagens.number }} de {{ mensagens.paginator.num_pages }}
+    </span>
+
+    {% if mensagens.has_next %}
+        <a href="?page={{ mensagens.next_page_number }}{% if request.GET.q %}&q={{ request.GET.q }}{% endif %}{% if request.GET.data_inicio %}&data_inicio={{ request.GET.data_inicio }}{% endif %}">
+            Próxima ▶
+        </a>
+    {% endif %}
+
+</div>
+
+    {% endif %}
+
     <footer>
         Disciplina, foco e resultado • Mupi Academia
     </footer>
 </main>
 </body>
+
 </html>
