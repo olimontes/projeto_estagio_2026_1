@@ -4,395 +4,188 @@
 
 <head>
     <meta charset="UTF-8">
-    <title>Mupi Academia</title>
+    <title>Mupi Academia | Gestão de Alta Performance</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;800;900&display=swap" rel="stylesheet">
+    
+    <link href="https://unpkg.com/aos@2.3.1/dist/aos.css" rel="stylesheet">
 
     <style>
-        /* ================= VARIÁVEIS ================= */
         :root {
             --primary: #5B6CFF;
-            --primary-light: #8B95FF;
             --primary-dark: #3F4ED9;
-
             --accent: #22c55e;
-
-            --bg-light: #f9fafb;
             --bg-dark: #0f172a;
-
-            --text-dark: #0f172a;
-            --text-light: #ffffff;
+            --text-main: #1e293b;
+            --glass: rgba(255, 255, 255, 0.9);
         }
 
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             scroll-behavior: smooth;
         }
 
         body {
-            background: var(--bg-light);
-            color: var(--text-dark);
+            background-color: #f8fafc;
+            color: var(--text-main);
+            overflow-x: hidden;
         }
 
-        /* ================= HEADER ================= */
+        /* ================= HEADER & NAV ================= */
         header {
-            background: linear-gradient(135deg, #ffffff, #f0f3ff);
-            padding: 18px 60px;
+            background: var(--glass);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+            padding: 15px 8%;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
+            box-shadow: 0 4px 20px rgba(0, 0, 0, 0.03);
             position: sticky;
             top: 0;
-            z-index: 10;
+            z-index: 1000;
         }
 
-        header img {
-            height: 46px;
-        }
+        header img { height: 40px; z-index: 1001; }
 
-        nav a,
-        .nav-btn {
-            margin-left: 25px;
+        nav { display: flex; align-items: center; gap: 30px; }
+
+        nav a {
             text-decoration: none;
-            font-weight: 700;
-            color: var(--text-dark);
-            background: none;
-            border: none;
-            cursor: pointer;
+            font-weight: 600;
+            color: var(--bg-dark);
+            font-size: 14px;
             transition: 0.3s;
-            font-size: 15px;
         }
 
-        nav a:hover,
-        .nav-btn:hover {
-            color: var(--primary);
+        .btn-login {
+            background: var(--bg-dark);
+            color: white !important;
+            padding: 10px 24px;
+            border-radius: 8px;
+            font-weight: 700;
+        }
+
+        /* MENU MOBILE (HAMBURGUER) */
+        .menu-toggle {
+            display: none;
+            flex-direction: column;
+            gap: 5px;
+            cursor: pointer;
+            z-index: 1001;
+            padding: 10px;
+        }
+
+        .menu-toggle span {
+            display: block;
+            width: 25px;
+            height: 3px;
+            background: var(--bg-dark);
+            border-radius: 3px;
+            transition: 0.3s;
+        }
+
+        /* ================= RESPONSIVO HEADER ================= */
+        @media (max-width: 968px) {
+            header { padding: 15px 20px; }
+            
+            .menu-toggle { display: flex; }
+
+            nav {
+                position: fixed;
+                top: 0;
+                right: -100%;
+                width: 80%;
+                height: 100vh;
+                background: white;
+                flex-direction: column;
+                justify-content: center;
+                gap: 40px;
+                transition: 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+                box-shadow: -10px 0 30px rgba(0,0,0,0.1);
+            }
+
+            nav.active { right: 0; }
+
+            nav a { font-size: 18px; }
+
+            /* Animação do X no hamburguer */
+            .menu-toggle.active span:nth-child(1) { transform: translateY(8px) rotate(45deg); }
+            .menu-toggle.active span:nth-child(2) { opacity: 0; }
+            .menu-toggle.active span:nth-child(3) { transform: translateY(-8px) rotate(-45deg); }
         }
 
         /* ================= HERO ================= */
         .hero {
-            min-height: 90vh;
+            padding: 80px 8% 100px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.2fr 0.8fr;
             align-items: center;
-            padding: 60px;
-            background: linear-gradient(135deg, #5B6CFF 0%, #8B95FF 40%, #ffffff 100%);
-            position: relative;
-            overflow: hidden;
-        }
-
-        .hero-left {
-            z-index: 2;
+            gap: 50px;
+            background: radial-gradient(circle at top right, #eef2ff 0%, #ffffff 50%);
         }
 
         .tag {
+            background: #dcfce7;
+            color: #166534;
+            padding: 6px 16px;
+            border-radius: 50px;
+            font-size: 12px;
+            font-weight: 800;
             display: inline-block;
-            background: linear-gradient(135deg, #22c55e, #16a34a);
-            color: #fff;
-            font-weight: 900;
-            padding: 6px 18px;
-            font-size: 13px;
-            letter-spacing: 1px;
             margin-bottom: 20px;
-            border-radius: 20px;
         }
 
         .hero h1 {
-            font-size: 56px;
+            font-size: clamp(32px, 5vw, 64px);
             font-weight: 900;
             line-height: 1.1;
-            margin-bottom: 20px;
-            color: #0f172a;
+            margin-bottom: 24px;
         }
 
         .hero h1 span {
-            color: var(--primary-dark);
-        }
-
-        .hero p {
-            font-size: 18px;
-            max-width: 480px;
-            line-height: 1.7;
-            color: #1e293b;
+            background: linear-gradient(90deg, var(--primary), #8B95FF);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
         }
 
         .btn-hero {
-            display: inline-block;
-            margin-top: 30px;
-            padding: 14px 38px;
-            background: linear-gradient(135deg, #0f172a, #3F4ED9);
-            color: #fff;
+            padding: 18px 40px;
+            background: var(--primary);
+            color: white;
             text-decoration: none;
-            font-weight: 800;
-            border-radius: 30px;
-            box-shadow: 0 12px 25px rgba(63, 78, 217, 0.45);
-            transition: 0.3s;
+            font-weight: 700;
+            border-radius: 12px;
+            display: inline-block;
         }
 
-        .btn-hero:hover {
-            background: linear-gradient(135deg, #5B6CFF, #3F4ED9);
-            transform: translateY(-3px);
+        .hero-right img { width: 100%; position: relative; z-index: 5; }
+
+        @media (max-width: 968px) {
+            .hero { grid-template-columns: 1fr; text-align: center; padding-top: 40px; }
+            .hero-right { order: -1; } /* Imagem aparece antes do texto no celular */
+            .hero-right img { max-width: 300px; margin: 0 auto; }
         }
 
-        .hero-right {
-            position: relative;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-        }
-
-        .hero-right img {
-            position: relative;
-            z-index: 3;
-            width: 500px;
-            filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.35));
-            transition: transform 0.4s ease;
-        }
-
-        .hero-right img:hover {
-            transform: scale(1.05);
-        }
-
-        .circle {
-            position: absolute;
-            border-radius: 50%;
-            z-index: 1;
-        }
-
-        .circle.light {
-            width: 560px;
-            height: 560px;
-            background: rgba(255, 255, 255, 0.35);
-        }
-
-        .circle.main {
-            width: 420px;
-            height: 420px;
-            background: linear-gradient(135deg, #5B6CFF, #3F4ED9);
-        }
-
-        /* ================= SOBRE ================= */
-        .sobre {
-            padding: 100px 60px;
-            background: linear-gradient(180deg, #ffffff, #f0f3ff);
-            text-align: center;
-        }
-
-        .sobre h2 {
-            font-size: 40px;
-            margin-bottom: 25px;
-        }
-
-        .sobre p {
-            max-width: 850px;
-            margin: 0 auto 60px;
-            font-size: 18px;
-            line-height: 1.8;
-            color: #334155;
-        }
-
-        .cards {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-            gap: 35px;
-        }
-
-        .card {
-            background: linear-gradient(180deg, #ffffff, #f8f9ff);
-            padding: 40px 30px;
-            border-radius: 22px;
-            box-shadow: 0 20px 40px rgba(91, 108, 255, 0.18);
-            transition: 0.3s;
-            border-top: 6px solid var(--primary);
-        }
-
-        .card:hover {
-            transform: translateY(-10px);
-        }
-
-        .card-icon {
-            font-size: 42px;
-            margin-bottom: 18px;
-        }
-
-        .card h3 {
-            margin-bottom: 12px;
-            color: var(--primary-dark);
-        }
+        /* ================= CARDS & SOBRE ================= */
+        .sobre { padding: 80px 8%; text-align: center; }
+        .cards { display: grid; grid-template-columns: repeat(auto-fit, minmax(280px, 1fr)); gap: 30px; }
+        .card { background: white; padding: 40px; border-radius: 24px; border: 1px solid #f1f5f9; text-align: left; }
+        .card-icon { width: 60px; height: 60px; background: #f0f3ff; border-radius: 16px; display: flex; align-items: center; justify-content: center; font-size: 28px; margin-bottom: 24px; }
 
         /* ================= CONTATO ================= */
-        .contato {
-            padding: 100px 60px;
-            background: linear-gradient(135deg, #0f172a, #1e293b);
-            color: #fff;
-            text-align: center;
-        }
+        .contato { padding: 80px 8%; background: var(--bg-dark); border-radius: 40px 40px 0 0; color: white; }
+        .contato form { background: rgba(255,255,255,0.05); padding: 30px; border-radius: 24px; border: 1px solid rgba(255,255,255,0.1); margin-top: 30px; }
+        textarea { width: 100%; background: white; padding: 20px; border-radius: 12px; margin-bottom: 20px; font-size: 16px; border: none; }
+        .contato button { width: 100%; padding: 18px; background: var(--primary); color: white; border: none; border-radius: 12px; font-weight: 800; cursor: pointer; }
 
-        .contato h2 {
-            font-size: 38px;
-            margin-bottom: 10px;
-        }
-
-        .contato p {
-            opacity: 0.85;
-            margin-bottom: 40px;
-        }
-
-        .contato form {
-            max-width: 480px;
-            margin: auto;
-            background: linear-gradient(180deg, #ffffff, #f0f3ff);
-            padding: 40px;
-            border-radius: 22px;
-            color: #111;
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
-        }
-
-        .contato textarea {
-            width: 100%;
-            padding: 14px;
-            border-radius: 14px;
-            border: 1px solid #c7d2fe;
-            font-size: 15px;
-            min-height: 130px;
-            margin-bottom: 20px;
-        }
-
-        .contato button {
-            width: 100%;
-            padding: 14px;
-            background: linear-gradient(135deg, #5B6CFF, #3F4ED9);
-            border: none;
-            border-radius: 14px;
-            color: #fff;
-            font-size: 16px;
-            font-weight: 900;
-            cursor: pointer;
-            transition: 0.3s;
-            box-shadow: 0 12px 25px rgba(91, 108, 255, 0.45);
-        }
-
-        .contato button:hover {
-            transform: translateY(-2px);
-        }
-
-        /* ================= FOOTER ================= */
-        footer {
-            background: #070d16;
-            text-align: center;
-            padding: 25px;
-            font-size: 14px;
-            color: rgba(255, 255, 255, 0.7);
-        }
-
-        /* ================= RESPONSIVO ================= */
-        @media (max-width: 900px) {
-            .hero {
-                grid-template-columns: 1fr;
-                text-align: center;
-            }
-
-            .hero h1 {
-                font-size: 42px;
-            }
-
-            .hero-right {
-                margin-top: 50px;
-            }
-        }
-
-        /* ================= MOBILE FIRST AJUSTES ================= */
-        @media (max-width: 768px) {
-
-            /* HEADER */
-            header {
-                padding: 15px 20px;
-                flex-direction: column;
-                gap: 15px;
-            }
-
-            nav {
-                display: flex;
-                flex-wrap: wrap;
-                justify-content: center;
-                gap: 15px;
-            }
-
-            nav a,
-            .nav-btn {
-                margin: 0;
-                font-size: 14px;
-            }
-
-            /* HERO */
-            .hero {
-                padding: 50px 20px;
-                min-height: auto;
-            }
-
-            .hero h1 {
-                font-size: 36px;
-            }
-
-            .hero p {
-                font-size: 16px;
-                max-width: 100%;
-            }
-
-            .btn-hero {
-                padding: 12px 28px;
-                font-size: 14px;
-            }
-
-            .hero-right img {
-                width: 90%;
-                max-width: 320px;
-            }
-
-            .circle.light {
-                width: 360px;
-                height: 360px;
-            }
-
-            .circle.main {
-                width: 280px;
-                height: 280px;
-            }
-
-            /* SOBRE */
-            .sobre {
-                padding: 70px 20px;
-            }
-
-            .sobre h2 {
-                font-size: 30px;
-            }
-
-            .sobre p {
-                font-size: 16px;
-            }
-
-            /* CONTATO */
-            .contato {
-                padding: 70px 20px;
-            }
-
-            .contato h2 {
-                font-size: 30px;
-            }
-
-            .contato form {
-                padding: 25px;
-            }
-
-            /* FOOTER */
-            footer {
-                font-size: 13px;
-                padding: 20px;
-            }
-        }
+        footer { background: #070d16; padding: 40px; text-align: center; color: #64748b; }
     </style>
 </head>
 
@@ -400,96 +193,106 @@
 
     <header>
         <img src="{% static 'images/logo.png' %}" alt="Logo Mupi">
-        <nav>
-            <a href="#sobre">Sobre</a>
-            <a href="#contato">Contato</a>
+        
+        <div class="menu-toggle" id="mobile-menu">
+            <span></span>
+            <span></span>
+            <span></span>
+        </div>
 
+        <nav id="nav-menu">
+            <a href="#sobre">Diferenciais</a>
+            <a href="#contato">Contato</a>
             {% if user.is_authenticated %}
-            {% if user.is_superuser %}
-            <a href="{% url 'sac_academia:painel' %}">Painel</a>
-            {% endif %}
-            <form method="post" action="{% url 'sac_academia:logout' %}" style="display:inline;">
-                {% csrf_token %}
-                <button class="nav-btn">Logout</button>
-            </form>
+                {% if user.is_superuser %}
+                    <a href="{% url 'sac_academia:painel' %}">Painel</a>
+                {% endif %}
+                <form method="post" action="{% url 'sac_academia:logout' %}">
+                    {% csrf_token %}
+                    <button type="submit" class="btn-login" style="border:none; cursor:pointer; width: 100%;">Logout</button>
+                </form>
             {% else %}
-            <a href="{% url 'sac_academia:login' %}">Login</a>
+                <a href="{% url 'sac_academia:login' %}" class="btn-login">Acessar Sistema</a>
             {% endif %}
         </nav>
     </header>
 
     <section class="hero">
-        <div class="hero-left">
-            <span class="tag">FITNESS TECH</span>
-            <h1>GESTÃO PARA<br><span>ACADEMIAS</span></h1>
-            <p>
-                A Mupi Academia une tecnologia e organização para academias
-                que buscam disciplina, performance e crescimento real.
-            </p>
-            <a href="#contato" class="btn-hero">SAIBA MAIS</a>
+        <div class="hero-left" data-aos="fade-right">
+            <span class="tag">Disciplina gera resultado</span>
+            <h1>Sua academia no <span>próximo nível</span> de gestão.</h1>
+            <p>A tecnologia que você precisa para organizar processos, escalar alunos e focar na performance.</p>
+            <a href="#contato" class="btn-hero">COMEÇAR AGORA</a>
         </div>
 
-        <div class="hero-right">
-            <div class="circle light"></div>
-            <div class="circle main"></div>
-            <img src="{% static 'images/landpage.png' %}" alt="Dashboard Mupi">
+        <div class="hero-right" data-aos="zoom-in">
+            <img src="{% static 'images/landpage.png' %}" alt="Mupi App Interface">
         </div>
     </section>
 
     <section class="sobre" id="sobre">
-        <h2>Sobre a Mupi Academia</h2>
-        <p>
-            Fundada em 2017 e sediada em Montes Claros (MG), a <strong>Mupi Academia</strong> nasceu do ecossistema da Mupi Systems,
-            desenvolvendo soluções digitais focadas em performance, organização e resultado.
-        </p>
-
+        <h2 style="font-size: 32px; margin-bottom: 40px;" data-aos="fade-up">Por que escolher a Mupi?</h2>
         <div class="cards">
-            <div class="card">
+            <div class="card" data-aos="fade-up">
                 <div class="card-icon">📊</div>
-                <h3>Organização</h3>
-                <p>Mensagens e informações centralizadas em um único painel estratégico.</p>
+                <h3>Inteligência de Dados</h3>
+                <p>Relatórios precisos para decisões estratégicas que fazem o negócio crescer.</p>
             </div>
-            <div class="card">
+            <div class="card" data-aos="fade-up" data-aos-delay="100">
                 <div class="card-icon">⚡</div>
-                <h3>Performance</h3>
-                <p>Menos burocracia na gestão, mais tempo focado no treino e no aluno.</p>
+                <h3>Agilidade Máxima</h3>
+                <p>Reduza o tempo de atendimento e burocracia com nosso fluxo digital.</p>
             </div>
-            <div class="card">
-                <div class="card-icon">🏆</div>
-                <h3>Resultado</h3>
-                <p>Decisões rápidas e precisas baseadas em dados e comunicação clara.</p>
+            <div class="card" data-aos="fade-up" data-aos-delay="200">
+                <div class="card-icon">🎯</div>
+                <h3>Foco no Aluno</h3>
+                <p>Comunicação personalizada, aumentando a retenção e satisfação.</p>
             </div>
         </div>
     </section>
 
     <section class="contato" id="contato">
-        <h2>Entre em contato</h2>
-        <p>Fale com a gente e leve sua academia para o próximo nível.</p>
-
-        <form method="post">
-            {% csrf_token %}
-            {% if user.is_authenticated %}
-            <textarea name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
-            <button type="submit">ENVIAR</button>
-            {% else %}
-            <p style="color:#333;">Faça login para enviar uma mensagem.</p>
-            <a href="{% url 'sac_academia:login' %}">Entrar</a>
-            {% endif %}
-
-            {% if messages %}
-            <div class="messages">
-                {% for message in messages %}
-                <p>{{ message }}</p>
-                {% endfor %}
-            </div>
-            {% endif %}
-        </form>
+        <div class="contato-wrapper" data-aos="fade-up">
+            <h2>Fale com um especialista</h2>
+            <form method="post">
+                {% csrf_token %}
+                {% if user.is_authenticated %}
+                <textarea name="mensagem" placeholder="Como podemos ajudar?" required></textarea>
+                <button type="submit">ENVIAR MENSAGEM</button>
+                {% else %}
+                <div style="text-align: center;">
+                    <p style="margin-bottom: 20px;">Identifique-se para entrar em contato.</p>
+                    <a href="{% url 'sac_academia:login' %}" class="btn-hero" style="background: white; color: var(--bg-dark);">ENTRAR</a>
+                </div>
+                {% endif %}
+            </form>
+        </div>
     </section>
 
     <footer>
-        © 2025 Mupi Academia • Disciplina gera resultado
+        <p>© 2026 Mupi Academia • Montes Claros, MG</p>
     </footer>
 
-</body>
+    <script src="https://unpkg.com/aos@2.3.1/dist/aos.js"></script>
+    <script>
+        AOS.init({ duration: 800, once: true });
 
+        // SCRIPT DO MENU MOBILE
+        const mobileMenu = document.getElementById('mobile-menu');
+        const navMenu = document.getElementById('nav-menu');
+
+        mobileMenu.addEventListener('click', () => {
+            mobileMenu.classList.toggle('active');
+            navMenu.classList.toggle('active');
+        });
+
+        // Fecha o menu ao clicar em um link
+        document.querySelectorAll('nav a').forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('active');
+                navMenu.classList.remove('active');
+            });
+        });
+    </script>
+</body>
 </html>

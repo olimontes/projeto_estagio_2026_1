@@ -4,236 +4,181 @@
     <meta charset="UTF-8">
     <title>Login | Mupi Academia</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700;800;900&display=swap" rel="stylesheet">
 
     <style>
-        /* ================= VARIÁVEIS ================= */
         :root {
             --primary: #5B6CFF;
-            --primary-light: #8B95FF;
             --primary-dark: #3F4ED9;
             --accent: #22c55e;
-
             --bg-dark: #0f172a;
-            --bg-dark-2: #1e293b;
-
-            --text-dark: #0f172a;
+            --text-main: #1e293b;
             --text-muted: #64748b;
         }
 
         * {
             box-sizing: border-box;
-            font-family: 'Segoe UI', Arial, sans-serif;
+            font-family: 'Inter', sans-serif;
             margin: 0;
             padding: 0;
         }
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-2));
+            background: radial-gradient(circle at top left, #1e293b, #0f172a);
             display: flex;
             align-items: center;
             justify-content: center;
+            padding: 20px;
         }
 
         /* ================= CONTAINER ================= */
         .container {
-            width: 900px;
-            max-width: 95%;
-            background: linear-gradient(180deg, #ffffff, #f0f3ff);
-            border-radius: 22px;
+            width: 1000px;
+            max-width: 100%;
+            background: #ffffff;
+            border-radius: 28px;
             display: grid;
-            grid-template-columns: 1fr 1fr;
+            grid-template-columns: 1.1fr 0.9fr;
             overflow: hidden;
-            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
+            box-shadow: 0 40px 100px rgba(0, 0, 0, 0.5);
         }
 
-        /* ================= LOGIN ================= */
+        /* ================= LOGIN BOX ================= */
         .login-box {
-            padding: 55px;
+            padding: 60px;
             display: flex;
             flex-direction: column;
             justify-content: center;
         }
 
         .login-box h2 {
-            margin-bottom: 8px;
-            font-size: 30px;
-            color: var(--primary-dark);
+            font-size: 32px;
             font-weight: 900;
+            color: var(--bg-dark);
+            margin-bottom: 10px;
+            letter-spacing: -1px;
         }
 
-        .login-box p {
-            margin-bottom: 30px;
+        .login-box p.subtitle {
             color: var(--text-muted);
+            margin-bottom: 35px;
+            font-size: 15px;
         }
 
+        /* Estilização do Form Django {{ form.as_p }} */
         form p {
-            margin-bottom: 18px;
+            margin-bottom: 20px;
         }
 
         form label {
-            font-weight: 700;
             display: block;
-            margin-bottom: 6px;
-            color: #334155;
+            font-weight: 700;
+            font-size: 13px;
+            text-transform: uppercase;
+            letter-spacing: 0.5px;
+            margin-bottom: 8px;
+            color: var(--bg-dark);
         }
 
         form input {
             width: 100%;
-            padding: 13px;
+            padding: 14px 18px;
             border-radius: 12px;
-            border: 1px solid #c7d2fe;
+            border: 1.5px solid #e2e8f0;
             font-size: 15px;
             transition: 0.3s;
+            background: #f8fafc;
         }
 
         form input:focus {
             outline: none;
             border-color: var(--primary);
-            box-shadow: 0 0 0 3px rgba(91, 108, 255, 0.25);
+            background: #ffffff;
+            box-shadow: 0 0 0 4px rgba(91, 108, 255, 0.1);
         }
 
         button {
             width: 100%;
-            margin-top: 18px;
-            padding: 14px;
+            margin-top: 10px;
+            padding: 16px;
             border: none;
             border-radius: 14px;
-            background: linear-gradient(
-                135deg,
-                var(--primary),
-                var(--primary-dark)
-            );
+            background: var(--primary);
             color: #fff;
             font-size: 16px;
-            font-weight: 900;
+            font-weight: 800;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 12px 25px rgba(91, 108, 255, 0.45);
+            box-shadow: 0 10px 20px rgba(91, 108, 255, 0.3);
         }
 
         button:hover {
+            background: var(--primary-dark);
             transform: translateY(-2px);
+            box-shadow: 0 15px 25px rgba(91, 108, 255, 0.4);
         }
 
-        /* ================= LINK ================= */
+        /* ================= LINKS ================= */
         .signup-link {
-            margin-top: 25px;
+            margin-top: 30px;
             text-align: center;
             font-size: 14px;
             color: var(--text-muted);
         }
 
         .signup-link a {
-            color: var(--accent);
+            color: var(--primary);
             text-decoration: none;
-            font-weight: 800;
+            font-weight: 700;
+            margin-left: 5px;
         }
 
-        .signup-link a:hover {
-            text-decoration: underline;
-        }
+        .signup-link a:hover { text-decoration: underline; }
 
-        /* ================= MESSAGES ================= */
-        .messages {
-            margin-top: 15px;
-        }
-
-        .messages p {
-            color: #ef4444;
-            font-size: 14px;
-            text-align: center;
-        }
-
-        /* ================= IMAGEM ================= */
+        /* ================= IMAGE BOX ================= */
         .image-box {
-            background:
-                linear-gradient(
-                    rgba(15, 23, 42, 0.65),
-                    rgba(15, 23, 42, 0.65)
-                ),
-                url("https://images.unsplash.com/photo-1558611848-73f7eb4001a1")
-                center / cover no-repeat;
-
-            color: #fff;
-            padding: 45px;
+            background: linear-gradient(to bottom, rgba(91, 108, 255, 0.2), rgba(15, 23, 42, 0.9)),
+                        url("https://images.unsplash.com/photo-1534438327276-14e5300c3a48?q=80&w=1000&auto=format&fit=crop");
+            background-size: cover;
+            background-position: center;
+            padding: 50px;
             display: flex;
             flex-direction: column;
             justify-content: flex-end;
+            color: white;
+            position: relative;
         }
 
         .image-box h3 {
-            font-size: 34px;
-            margin-bottom: 8px;
+            font-size: 38px;
             font-weight: 900;
+            line-height: 1.1;
+            margin-bottom: 15px;
+            text-shadow: 0 2px 10px rgba(0,0,0,0.3);
         }
 
         .image-box p {
             font-size: 16px;
             opacity: 0.9;
+            font-weight: 400;
+            border-left: 3px solid var(--accent);
+            padding-left: 15px;
         }
 
         /* ================= RESPONSIVO ================= */
-        @media (max-width: 768px) {
-            body {
-                padding: 20px;
-            }
-
-            .container {
-                grid-template-columns: 1fr;
-                border-radius: 18px;
-            }
-
-            .image-box {
-                display: none;
-            }
-
-            .login-box {
-                padding: 35px 25px;
-            }
-
-            .login-box h2 {
-                font-size: 26px;
-                text-align: center;
-            }
-
-            .login-box p {
-                text-align: center;
-                font-size: 15px;
-            }
-
-            button {
-                font-size: 17px;
-                padding: 16px;
-            }
+        @media (max-width: 900px) {
+            .container { grid-template-columns: 1fr; max-width: 500px; }
+            .image-box { display: none; }
+            .login-box { padding: 40px; }
         }
 
         @media (max-width: 480px) {
-            .login-box {
-                padding: 30px 20px;
-            }
-
-            form input {
-                padding: 15px;
-                font-size: 16px;
-            }
-
-            button {
-                padding: 17px;
-                font-size: 17px;
-                border-radius: 16px;
-            }
-
-            .signup-link {
-                font-size: 13px;
-            }
-        }
-
-        @media (max-height: 600px) {
-            body {
-                align-items: flex-start;
-                padding: 30px 0;
-            }
+            .login-box { padding: 30px 20px; }
+            .login-box h2 { font-size: 26px; }
         }
     </style>
 </head>
@@ -242,29 +187,41 @@
     <div class="container">
 
         <div class="login-box">
-            <h2>Acesso ao Sistema</h2>
-            <p>Entre para entrar em contato conosco</p>
+            <h2>Bem-vindo de volta</h2>
+            <p class="subtitle">Acesse sua conta para gerenciar seus treinos e contatos.</p>
 
-            <form method="post">
+            <form method="post" id="loginForm">
                 {% csrf_token %}
+                
                 {{ form.as_p }}
 
-                <button type="submit">Entrar</button>
+                <button type="submit">ENTRAR NO SISTEMA</button>
             </form>
 
             <div class="signup-link">
-                Ainda não tem uma conta?
-                <a href="{% url 'sac_academia:cadastro' %}">
-                    Cadastre-se aqui
+                Não possui uma conta?
+                <a href="{% url 'sac_academia:cadastro' %}">Crie uma agora</a>
+            </div>
+
+            <div style="margin-top: 20px; text-align: center;">
+                <a href="{% url 'sac_academia:landpage' %}" style="font-size: 13px; color: var(--text-muted); text-decoration: none;">
+                    ← Voltar para a Home
                 </a>
             </div>
         </div>
 
         <div class="image-box">
-            <h3>Disciplina gera resultado</h3>
-            <p>Gestão inteligente para academias</p>
+            <h3>Disciplina gera<br>resultado.</h3>
+            <p>Faça parte da rede de academias que mais cresce usando tecnologia de ponta.</p>
         </div>
 
     </div>
+
+    <script>
+        // Script auxiliar para garantir que os inputs do Django recebam as classes de estilo
+        document.querySelectorAll('form p input').forEach(input => {
+            input.placeholder = " "; // Ativa estados de placeholder se necessário
+        });
+    </script>
 </body>
 </html>
