@@ -30,18 +30,26 @@
 
         body {
             min-height: 100vh;
-            background: linear-gradient(135deg, var(--bg-dark), var(--bg-dark-2));
+            background: linear-gradient(
+                135deg,
+                var(--bg-dark),
+                var(--bg-dark-2)
+            );
             color: var(--text-light);
         }
 
         /* ================= HEADER ================= */
         header {
-            background: linear-gradient(135deg, rgba(15,23,42,0.85), rgba(30,41,59,0.85));
+            background: linear-gradient(
+                135deg,
+                rgba(15, 23, 42, 0.85),
+                rgba(30, 41, 59, 0.85)
+            );
             padding: 20px 50px;
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 15px 35px rgba(0,0,0,0.4);
+            box-shadow: 0 15px 35px rgba(0, 0, 0, 0.4);
             position: sticky;
             top: 0;
             z-index: 10;
@@ -53,19 +61,25 @@
             font-weight: 800;
         }
 
-        header span {
+        header h1 span {
             font-weight: normal;
             opacity: 0.8;
+            display: block;
+            font-size: 14px;
         }
 
         .nav-btn {
             text-decoration: none;
             padding: 10px 22px;
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
             color: #fff;
             font-weight: 700;
             border-radius: 22px;
-            box-shadow: 0 10px 25px rgba(91,108,255,0.45);
+            box-shadow: 0 10px 25px rgba(91, 108, 255, 0.45);
             transition: 0.3s;
         }
 
@@ -83,7 +97,7 @@
             color: var(--text-dark);
             border-radius: 24px;
             padding: 35px;
-            box-shadow: 0 30px 60px rgba(0,0,0,0.45);
+            box-shadow: 0 30px 60px rgba(0, 0, 0, 0.45);
         }
 
         .card h2 {
@@ -98,19 +112,30 @@
         }
 
         /* ================= TABELA ================= */
-        table {
+        .table-wrapper {
             width: 100%;
-            border-collapse: collapse;
-            overflow: hidden;
+            overflow-x: auto;
+            -webkit-overflow-scrolling: touch;
             border-radius: 18px;
         }
 
+        table {
+            width: 100%;
+            border-collapse: collapse;
+            min-width: 700px;
+        }
+
         thead {
-            background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+            background: linear-gradient(
+                135deg,
+                var(--primary),
+                var(--primary-dark)
+            );
             color: #fff;
         }
 
-        th, td {
+        th,
+        td {
             padding: 14px 16px;
             text-align: left;
             vertical-align: top;
@@ -149,7 +174,7 @@
         button[type="submit"] {
             background: linear-gradient(135deg, #ef4444, #dc2626);
             color: #fff;
-            box-shadow: 0 8px 18px rgba(239,68,68,0.4);
+            box-shadow: 0 8px 18px rgba(239, 68, 68, 0.4);
         }
 
         button[type="submit"]:hover {
@@ -188,176 +213,185 @@
             header {
                 flex-direction: column;
                 gap: 15px;
+                padding: 18px 25px;
                 text-align: center;
             }
 
             main {
-                padding: 25px;
+                padding: 25px 18px;
             }
 
-            table {
-                font-size: 13px;
+            .card {
+                padding: 28px 22px;
+            }
+
+            .card h2,
+            .card p {
+                text-align: center;
             }
         }
 
-        /* ================= RESPONSIVO AVANÇADO ================= */
+        @media (max-width: 600px) {
+            th,
+            td {
+                padding: 12px 14px;
+                font-size: 13px;
+            }
 
-/* Tablets */
-@media (max-width: 900px) {
-    header {
-        padding: 18px 25px;
-        text-align: center;
-    }
+            button {
+                padding: 10px 14px;
+                font-size: 13px;
+            }
 
-    header h1 {
-        font-size: 20px;
-    }
+            footer {
+                font-size: 12px;
+                margin-top: 25px;
+            }
+        }
 
-    main {
-        padding: 25px 18px;
-    }
-
-    .card {
-        padding: 28px 22px;
-    }
-}
-
-/* Mobile */
-@media (max-width: 600px) {
-    table {
-        min-width: 700px;
-    }
-}
-
-
-    header h1 span {
-        display: block;
-        font-size: 14px;
-        opacity: 0.7;
-    }
-
-    .nav-btn {
-        padding: 10px 26px;
-        font-size: 14px;
-    }
-
-    .card h2 {
-        font-size: 22px;
-        text-align: center;
-    }
-
-    .card p {
-        text-align: center;
-        font-size: 14px;
-    }
-
-    /* Scroll horizontal da tabela */
-    .table-wrapper {
-        overflow-x: auto;
-        -webkit-overflow-scrolling: touch;
-        border-radius: 18px;
-    }
-
-    table {
-        min-width: 700px;
-    }
-
-    .table-wrapper {
-    width: 100%;
-    overflow-x: auto;
-}
-
-    th, td {
-        padding: 12px 14px;
-        font-size: 13px;
-    }
-
-    button {
-        padding: 10px 14px;
-        font-size: 13px;
-    }
-
-    footer {
-        font-size: 12px;
-        margin-top: 25px;
-    }
-}
-
-/* Telas muito baixas */
-@media (max-height: 650px) {
-    main {
-        padding-top: 20px;
-    }
-}
-
+        @media (max-height: 650px) {
+            main {
+                padding-top: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
-
 <header>
-    <h1>Mupi Academia <span>| Painel Administrativo</span></h1>
-    <a href="{% url 'sac_academia:landpage' %}" class="nav-btn">Voltar</a>
+    <h1>
+        Mupi Academia
+        <span>| Painel Administrativo</span>
+    </h1>
+    <a href="{% url 'sac_academia:landpage' %}" class="nav-btn">
+        Voltar
+    </a>
 </header>
 
 <main>
     <div class="card">
         <h2>Painel de Mensagens</h2>
-        <p>Olá, <strong>{{ request.user.username }}</strong></p>
+        <p>
+            Olá,
+            <strong>{{ request.user.username }}</strong>
+        </p>
+
+        {% if nenhuma_mensagem %}
+    <div style="background:#fff3cd; padding:15px; border-radius:8px; margin-bottom:15px;">
+        <p style="margin:0; color:#856404;">
+            Nenhuma mensagem encontrada com os filtros aplicados.
+        </p>
+
+        <a href="{% url 'sac_academia:painel' %}"
+           style="display:inline-block; margin-top:10px; padding:8px 15px;
+                  background:#007bff; color:#fff; text-decoration:none;
+                  border-radius:5px;">
+            Voltar para todas as mensagens
+        </a>
+    </div>
+{% endif %}
 
         {% if mensagens %}
-        <div class = "table-wrapper">
-        <table>
-            
-            <thead>
-                <tr>
-                    <th>Usuário</th>
-                    <th>Mensagem</th>
-                    <th>Data</th>
-                    <th>Ações</th>
-                </tr>
-            </thead>
-            <tbody>
-                {% for msg in mensagens %}
-                <tr>
-                    <td>{{ msg.nome }} ({{ msg.email }})</td>
-                    <td>{{ msg.mensagem }}</td>
-                    <td>{{ msg.data_envio|date:"d/m/Y H:i" }}</td>
-                    
-                        <td>
-    {% if not msg.lida %}
-        <form action="{% url 'sac_academia:marcar_lida' msg.id %}" method="POST" style="display:inline;">
-            {% csrf_token %}
-            <button type="submit" style="background: linear-gradient(135deg, #22c55e, #16a34a);">
-                Marcar como lida
-            </button>
-        </form>
-    {% else %}
-        <span style="color:#16a34a; font-weight:700;">Lida</span>
+        <form method="get" style="margin-bottom: 25px; display: flex; flex-wrap: wrap; gap: 15px;">
+    <input
+        type="text"
+        name="q"
+        placeholder="Buscar por nome, email ou mensagem"
+        value="{{ request.GET.q }}"
+        style="flex: 1; min-width: 220px; padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
+    >
+
+    <input
+        type="date"
+        name="data_inicio"
+        value="{{ request.GET.data_inicio }}"
+        style="padding: 10px 14px; border-radius: 12px; border: 1px solid #c7d2fe;"
+    >
+
+    <button
+        type="submit"
+        style="background: linear-gradient(135deg, #5B6CFF, #3F4ED9); color: #fff; padding: 10px 22px; border-radius: 14px;"
+    >
+        Filtrar
+    </button>
+
+    {% if request.GET %}
+        <a
+            href="{% url 'sac_academia:painel' %}"
+            class="nav-btn"
+            style="background: #64748b;"
+        >
+            Limpar
+        </a>
     {% endif %}
+</form>
 
-    <form action="{% url 'sac_academia:deletar_mensagem' msg.id %}" method="POST" style="display:inline;">
-        {% csrf_token %}
-        <button type="submit" onclick="return confirm('Tem certeza?')">
-            Excluir
-        </button>
-    </form>
-</td>
+            <div class="table-wrapper">
+                <table>
+                    <thead>
+                        <tr>
+                            <th>Usuário</th>
+                            <th>Mensagem</th>
+                            <th>Data</th>
+                            <th>Ações</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        {% for msg in mensagens %}
+                            <tr>
+                                <td>
+                                    {{ msg.nome }} ({{ msg.email }})
+                                </td>
+                                <td>{{ msg.mensagem }}</td>
+                                <td>
+                                    {{ msg.data_envio|date:"d/m/Y H:i" }}
+                                </td>
+                                <td>
+                                    {% if not msg.lida %}
+                                        <form
+                                            action="{% url 'sac_academia:marcar_lida' msg.id %}"
+                                            method="POST"
+                                            style="display:inline;"
+                                        >
+                                            {% csrf_token %}
+                                            <button
+                                                type="submit"
+                                                style="background: linear-gradient(135deg, #22c55e, #16a34a);"
+                                            >
+                                                Marcar como lida
+                                            </button>
+                                        </form>
+                                    {% else %}
+                                        <span style="color:#16a34a; font-weight:700;">
+                                            Lida
+                                        </span>
+                                    {% endif %}
 
-                
-
-                    
-                </tr>
-                {% empty %}
-                <tr>
-                    <td colspan="4" class="empty">
-                        Nenhuma mensagem encontrada.
-                    </td>
-                </tr>
-                {% endfor %}
-            </tbody>
-        </table>
-        </div>
+                                    <form
+                                        action="{% url 'sac_academia:deletar_mensagem' msg.id %}"
+                                        method="POST"
+                                        style="display:inline;"
+                                    >
+                                        {% csrf_token %}
+                                        <button
+                                            type="submit"
+                                            onclick="return confirm('Tem certeza?')"
+                                        >
+                                            Excluir
+                                        </button>
+                                    </form>
+                                </td>
+                            </tr>
+                        {% empty %}
+                            <tr>
+                                <td colspan="4" class="empty">
+                                    Nenhuma mensagem encontrada.
+                                </td>
+                            </tr>
+                        {% endfor %}
+                    </tbody>
+                </table>
+            </div>
         {% else %}
             <div class="empty">
                 Nenhuma mensagem recebida.
@@ -377,6 +411,5 @@
         Disciplina, foco e resultado • Mupi Academia
     </footer>
 </main>
-
 </body>
 </html>

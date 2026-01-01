@@ -7,6 +7,9 @@ from django.contrib.auth import login
 from .forms import CadastroForm
 from django.contrib.auth import authenticate, login
 from django.contrib.auth import logout
+from django.db.models import Q
+from django.utils.timezone import make_aware
+from datetime import datetime
 
 
 usuarios = User.objects.all()
@@ -46,10 +49,38 @@ def landpage(request):
 
 @login_required(login_url='sac_academia:login')
 def painel(request):
+    
     if not request.user.is_superuser:
         return redirect('sac_academia:landpage')
+    
     mensagens = Mensagem.objects.all().order_by('-data_envio')
-    return render(request, 'sac_academia/painel.html', {'mensagens': mensagens})
+
+    q = request.GET.get('q')
+    data_inicio = request.GET.get('data_inicio')
+
+    filtros_aplicados = False 
+
+    if q:
+        filtros_aplicados = True
+        mensagens = mensagens.filter(
+            Q(nome__icontains=q) |
+            Q(email__icontains=q) |
+            Q(mensagem__icontains=q)
+        )
+
+    if data_inicio:
+        filtros_aplicados = True
+        mensagens = mensagens.filter(
+            data_envio__date=data_inicio
+        )
+
+    nenhuma_mensagem = filtros_aplicados and not mensagens.exists()
+
+    return render(request, 'sac_academia/painel.html', {
+        'mensagens': mensagens,
+        'nenhuma_mensagem': nenhuma_mensagem
+    })
+
 
 @login_required(login_url='sac_academia:login')
 def deletar_mensagem(request, id):

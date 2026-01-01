@@ -1,6 +1,7 @@
 {% load static %}
 <!DOCTYPE html>
 <html lang="pt-br">
+
 <head>
     <meta charset="UTF-8">
     <title>Mupi Academia</title>
@@ -42,7 +43,7 @@
             display: flex;
             justify-content: space-between;
             align-items: center;
-            box-shadow: 0 10px 30px rgba(0,0,0,0.06);
+            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.06);
             position: sticky;
             top: 0;
             z-index: 10;
@@ -52,7 +53,8 @@
             height: 46px;
         }
 
-        nav a, .nav-btn {
+        nav a,
+        .nav-btn {
             margin-left: 25px;
             text-decoration: none;
             font-weight: 700;
@@ -64,7 +66,8 @@
             font-size: 15px;
         }
 
-        nav a:hover, .nav-btn:hover {
+        nav a:hover,
+        .nav-btn:hover {
             color: var(--primary);
         }
 
@@ -124,7 +127,7 @@
             text-decoration: none;
             font-weight: 800;
             border-radius: 30px;
-            box-shadow: 0 12px 25px rgba(63,78,217,0.45);
+            box-shadow: 0 12px 25px rgba(63, 78, 217, 0.45);
             transition: 0.3s;
         }
 
@@ -144,7 +147,7 @@
             position: relative;
             z-index: 3;
             width: 500px;
-            filter: drop-shadow(0 25px 45px rgba(0,0,0,0.35));
+            filter: drop-shadow(0 25px 45px rgba(0, 0, 0, 0.35));
             transition: transform 0.4s ease;
         }
 
@@ -161,7 +164,7 @@
         .circle.light {
             width: 560px;
             height: 560px;
-            background: rgba(255,255,255,0.35);
+            background: rgba(255, 255, 255, 0.35);
         }
 
         .circle.main {
@@ -200,7 +203,7 @@
             background: linear-gradient(180deg, #ffffff, #f8f9ff);
             padding: 40px 30px;
             border-radius: 22px;
-            box-shadow: 0 20px 40px rgba(91,108,255,0.18);
+            box-shadow: 0 20px 40px rgba(91, 108, 255, 0.18);
             transition: 0.3s;
             border-top: 6px solid var(--primary);
         }
@@ -244,7 +247,7 @@
             padding: 40px;
             border-radius: 22px;
             color: #111;
-            box-shadow: 0 25px 50px rgba(0,0,0,0.35);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.35);
         }
 
         .contato textarea {
@@ -268,7 +271,7 @@
             font-weight: 900;
             cursor: pointer;
             transition: 0.3s;
-            box-shadow: 0 12px 25px rgba(91,108,255,0.45);
+            box-shadow: 0 12px 25px rgba(91, 108, 255, 0.45);
         }
 
         .contato button:hover {
@@ -281,7 +284,7 @@
             text-align: center;
             padding: 25px;
             font-size: 14px;
-            color: rgba(255,255,255,0.7);
+            color: rgba(255, 255, 255, 0.7);
         }
 
         /* ================= RESPONSIVO ================= */
@@ -301,191 +304,192 @@
         }
 
         /* ================= MOBILE FIRST AJUSTES ================= */
-@media (max-width: 768px) {
+        @media (max-width: 768px) {
 
-    /* HEADER */
-    header {
-        padding: 15px 20px;
-        flex-direction: column;
-        gap: 15px;
-    }
+            /* HEADER */
+            header {
+                padding: 15px 20px;
+                flex-direction: column;
+                gap: 15px;
+            }
 
-    nav {
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center;
-        gap: 15px;
-    }
+            nav {
+                display: flex;
+                flex-wrap: wrap;
+                justify-content: center;
+                gap: 15px;
+            }
 
-    nav a, .nav-btn {
-        margin: 0;
-        font-size: 14px;
-    }
+            nav a,
+            .nav-btn {
+                margin: 0;
+                font-size: 14px;
+            }
 
-    /* HERO */
-    .hero {
-        padding: 50px 20px;
-        min-height: auto;
-    }
+            /* HERO */
+            .hero {
+                padding: 50px 20px;
+                min-height: auto;
+            }
 
-    .hero h1 {
-        font-size: 36px;
-    }
+            .hero h1 {
+                font-size: 36px;
+            }
 
-    .hero p {
-        font-size: 16px;
-        max-width: 100%;
-    }
+            .hero p {
+                font-size: 16px;
+                max-width: 100%;
+            }
 
-    .btn-hero {
-        padding: 12px 28px;
-        font-size: 14px;
-    }
+            .btn-hero {
+                padding: 12px 28px;
+                font-size: 14px;
+            }
 
-    .hero-right img {
-        width: 90%;
-        max-width: 320px;
-    }
+            .hero-right img {
+                width: 90%;
+                max-width: 320px;
+            }
 
-    .circle.light {
-        width: 360px;
-        height: 360px;
-    }
+            .circle.light {
+                width: 360px;
+                height: 360px;
+            }
 
-    .circle.main {
-        width: 280px;
-        height: 280px;
-    }
+            .circle.main {
+                width: 280px;
+                height: 280px;
+            }
 
-    /* SOBRE */
-    .sobre {
-        padding: 70px 20px;
-    }
+            /* SOBRE */
+            .sobre {
+                padding: 70px 20px;
+            }
 
-    .sobre h2 {
-        font-size: 30px;
-    }
+            .sobre h2 {
+                font-size: 30px;
+            }
 
-    .sobre p {
-        font-size: 16px;
-    }
+            .sobre p {
+                font-size: 16px;
+            }
 
-    /* CONTATO */
-    .contato {
-        padding: 70px 20px;
-    }
+            /* CONTATO */
+            .contato {
+                padding: 70px 20px;
+            }
 
-    .contato h2 {
-        font-size: 30px;
-    }
+            .contato h2 {
+                font-size: 30px;
+            }
 
-    .contato form {
-        padding: 25px;
-    }
+            .contato form {
+                padding: 25px;
+            }
 
-    /* FOOTER */
-    footer {
-        font-size: 13px;
-        padding: 20px;
-    }
-}
-
+            /* FOOTER */
+            footer {
+                font-size: 13px;
+                padding: 20px;
+            }
+        }
     </style>
 </head>
 
 <body>
 
-<header>
-    <img src="{% static 'images/logo.png' %}" alt="Logo Mupi">
-    <nav>
-        <a href="#sobre">Sobre</a>
-        <a href="#contato">Contato</a>
+    <header>
+        <img src="{% static 'images/logo.png' %}" alt="Logo Mupi">
+        <nav>
+            <a href="#sobre">Sobre</a>
+            <a href="#contato">Contato</a>
 
-        {% if user.is_authenticated %}
+            {% if user.is_authenticated %}
             {% if user.is_superuser %}
-                <a href="{% url 'sac_academia:painel' %}">Painel</a>
+            <a href="{% url 'sac_academia:painel' %}">Painel</a>
             {% endif %}
             <form method="post" action="{% url 'sac_academia:logout' %}" style="display:inline;">
                 {% csrf_token %}
                 <button class="nav-btn">Logout</button>
             </form>
-        {% else %}
+            {% else %}
             <a href="{% url 'sac_academia:login' %}">Login</a>
-        {% endif %}
-    </nav>
-</header>
+            {% endif %}
+        </nav>
+    </header>
 
-<section class="hero">
-    <div class="hero-left">
-        <span class="tag">FITNESS TECH</span>
-        <h1>GESTÃO PARA<br><span>ACADEMIAS</span></h1>
+    <section class="hero">
+        <div class="hero-left">
+            <span class="tag">FITNESS TECH</span>
+            <h1>GESTÃO PARA<br><span>ACADEMIAS</span></h1>
+            <p>
+                A Mupi Academia une tecnologia e organização para academias
+                que buscam disciplina, performance e crescimento real.
+            </p>
+            <a href="#contato" class="btn-hero">SAIBA MAIS</a>
+        </div>
+
+        <div class="hero-right">
+            <div class="circle light"></div>
+            <div class="circle main"></div>
+            <img src="{% static 'images/landpage.png' %}" alt="Dashboard Mupi">
+        </div>
+    </section>
+
+    <section class="sobre" id="sobre">
+        <h2>Sobre a Mupi Academia</h2>
         <p>
-            A Mupi Academia une tecnologia e organização para academias
-            que buscam disciplina, performance e crescimento real.
+            Fundada em 2017 e sediada em Montes Claros (MG), a <strong>Mupi Academia</strong> nasceu do ecossistema da Mupi Systems,
+            desenvolvendo soluções digitais focadas em performance, organização e resultado.
         </p>
-        <a href="#contato" class="btn-hero">SAIBA MAIS</a>
-    </div>
 
-    <div class="hero-right">
-        <div class="circle light"></div>
-        <div class="circle main"></div>
-        <img src="{% static 'images/landpage.png' %}" alt="Dashboard Mupi">
-    </div>
-</section>
-
-<section class="sobre" id="sobre">
-    <h2>Sobre a Mupi Academia</h2>
-    <p>
-        Fundada em 2017 e sediada em Montes Claros (MG), a <strong>Mupi Academia</strong> nasceu do ecossistema da Mupi Systems,
-        desenvolvendo soluções digitais focadas em performance, organização e resultado.
-    </p>
-
-    <div class="cards">
-        <div class="card">
-            <div class="card-icon">📊</div>
-            <h3>Organização</h3>
-            <p>Mensagens e informações centralizadas em um único painel estratégico.</p>
+        <div class="cards">
+            <div class="card">
+                <div class="card-icon">📊</div>
+                <h3>Organização</h3>
+                <p>Mensagens e informações centralizadas em um único painel estratégico.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">⚡</div>
+                <h3>Performance</h3>
+                <p>Menos burocracia na gestão, mais tempo focado no treino e no aluno.</p>
+            </div>
+            <div class="card">
+                <div class="card-icon">🏆</div>
+                <h3>Resultado</h3>
+                <p>Decisões rápidas e precisas baseadas em dados e comunicação clara.</p>
+            </div>
         </div>
-        <div class="card">
-            <div class="card-icon">⚡</div>
-            <h3>Performance</h3>
-            <p>Menos burocracia na gestão, mais tempo focado no treino e no aluno.</p>
-        </div>
-        <div class="card">
-            <div class="card-icon">🏆</div>
-            <h3>Resultado</h3>
-            <p>Decisões rápidas e precisas baseadas em dados e comunicação clara.</p>
-        </div>
-    </div>
-</section>
+    </section>
 
-<section class="contato" id="contato">
-    <h2>Entre em contato</h2>
-    <p>Fale com a gente e leve sua academia para o próximo nível.</p>
+    <section class="contato" id="contato">
+        <h2>Entre em contato</h2>
+        <p>Fale com a gente e leve sua academia para o próximo nível.</p>
 
-    <form method="post">
-        {% csrf_token %}
-        {% if user.is_authenticated %}
+        <form method="post">
+            {% csrf_token %}
+            {% if user.is_authenticated %}
             <textarea name="mensagem" placeholder="Digite sua mensagem..." required></textarea>
             <button type="submit">ENVIAR</button>
-        {% else %}
+            {% else %}
             <p style="color:#333;">Faça login para enviar uma mensagem.</p>
             <a href="{% url 'sac_academia:login' %}">Entrar</a>
-        {% endif %}
+            {% endif %}
 
-        {% if messages %}
+            {% if messages %}
             <div class="messages">
                 {% for message in messages %}
-                    <p>{{ message }}</p>
+                <p>{{ message }}</p>
                 {% endfor %}
             </div>
-        {% endif %}
-    </form>
-</section>
+            {% endif %}
+        </form>
+    </section>
 
-<footer>
-    © 2025 Mupi Academia • Disciplina gera resultado
-</footer>
+    <footer>
+        © 2025 Mupi Academia • Disciplina gera resultado
+    </footer>
 
 </body>
+
 </html>
